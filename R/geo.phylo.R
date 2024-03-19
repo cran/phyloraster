@@ -36,7 +36,7 @@
 #' \donttest{
 #' x <- terra::rast(system.file("extdata", "rast.presab.tif",
 #' package="phyloraster"))
-#' rse <- rast.sr(x)
+#' rse <- phyloraster::rast.sr(x)
 #' terra::plot(rse)
 #' }
 rast.sr <- function(x, filename = "", ...){
@@ -46,8 +46,7 @@ rast.sr <- function(x, filename = "", ...){
   }
 
   # richness
-  rsr <- sum(x,
-             filename = filename, ...)
+  rsr <- terra::app(x, sum, na.rm = T, filename = filename, ...)
 
   names(rsr) <- "SR"
 
@@ -96,9 +95,9 @@ rast.sr <- function(x, filename = "", ...){
 #' @references Williams, P.H., Humphries, C.J., Forey, P.L., Humphries, C.J. and
 #' VaneWright, R.I. (1994). Biodiversity, taxonomic relatedness, and endemism in
 #' conservation. In: Systematics and Conservation Evaluation (eds Forey PL,
-#' Humphries CJ, Vane-Wright RI), p. 438. Oxford University Press, Oxford.
+#' Humphries C.J., Vane-Wright RI), p. 438. Oxford University Press, Oxford.
 #' @references Crisp, M., Laffan, S., Linder, H. and Monro, A. (2001). Endemism
-#' in theAustralian flora. Journal of Biogeography, 28, 183–198.
+#' in the Australian flora. Journal of Biogeography, 28, 183–198.
 #' @references Isaac, N. J., Turvey, S. T., Collen, B., Waterman, C. and
 #' Baillie, J. E. (2007). Mammals on the EDGE: conservation priorities based on
 #' threat and phylogeny. PLoS ONE 2, e296.
@@ -197,10 +196,10 @@ rast.sr <- function(x, filename = "", ...){
 #' @references Williams, P.H., Humphries, C.J., Forey, P.L., Humphries, C.J.
 #' and VaneWright, R.I. (1994). Biodiversity, taxonomic relatedness, and
 #' endemism in conservation. In: Systematics and Conservation Evaluation
-#' (eds Forey PL, Humphries CJ, Vane-Wright RI), p. 438. Oxford University
+#' (eds Forey PL, Humphries C.J., Vane-Wright RI), p. 438. Oxford University
 #' Press, Oxford.
 #' @references Crisp, M., Laffan, S., Linder, H. and Monro, A. (2001).
-#' Endemism in theAustralian flora. Journal of Biogeography, 28, 183–198.
+#' Endemism in the Australian flora. Journal of Biogeography, 28, 183–198.
 #' @references Isaac, N. J., Turvey, S. T., Collen, B., Waterman, C. and
 #' Baillie, J. E. (2007). Mammals on the EDGE: conservation priorities based on
 #' threat and phylogeny. PLoS ONE 2, e296.
@@ -324,7 +323,7 @@ geo.phylo <- function(x, tree,
 #' @references Williams, P.H., Humphries, C.J., Forey, P.L., Humphries, C.J.,
 #' VaneWright, R.I. (1994). Biodiversity, taxonomic relatedness, and endemism
 #' in conservation. In: Systematics and Conservation Evaluation (eds Forey PL,
-#' Humphries CJ, Vane-Wright RI), p. 438. Oxford University Press, Oxford.
+#' Humphries C.J., Vane-Wright RI), p. 438. Oxford University Press, Oxford.
 #' @references Crisp, M., Laffan, S., Linder, H., Monro, A. (2001). Endemism
 #' in the Australian flora. Journal of Biogeography, 28, 183–198.
 #'

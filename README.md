@@ -1,7 +1,9 @@
 <!-- badges: start -->
-
+[![CRAN-status](https://www.r-pkg.org/badges/version/phyloraster)](https://cran.r-project.org/package=phyloraster)
 [![R-CMD-check](https://github.com/gabferreira/phyloraster/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gabferreira/phyloraster/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/gabferreira/phyloraster/branch/master/graph/badge.svg)](https://app.codecov.io/gh/gabferreira/phyloraster)
+[![download](http://cranlogs.r-pkg.org/badges/grand-total/phyloraster?color=green)](https://cran.r-project.org/package=phyloraster)
+[![download per month](http://cranlogs.r-pkg.org/badges/phyloraster?color=green)](https://cran.r-project.org/package=phyloraster)
 <!-- badges: end -->
 
 # phyloraster <a href="https://gabferreira.github.io/phyloraster/"><img src="man/figures/logo.png" alt="phyloraster website" align="right" height="139"/></a>
@@ -34,9 +36,11 @@ Basic information about the package can be found at the [package's webpage](http
 
 ### Citation
 
-- If you use this R package, please cite in your publications: <br>
+- Thank you for using phyloraster! Please remember to cite phyloraster in your publications: <br>
 
 Alves-Ferreira G., Heming N. M., Mota F. M. M. (2023). phyloraster: Evolutionary Diversity Metrics for Raster Data. R package version 2.0.
+
+Alves-Ferreira G, Mota FMM, Talora DC, Oliveira, C, Solé, MK, Heming NM (2023). phyloraster: an R package to calculate measures of endemism and evolutionary diversity for rasters. Ecography. doi: 10.1111/ecog.06902. 
 
 - For more information:
 

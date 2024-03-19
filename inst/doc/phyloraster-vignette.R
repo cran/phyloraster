@@ -3,13 +3,13 @@ library(knitr)
 knitr::opts_chunk$set(collapse = TRUE,message=FALSE, warning = FALSE,
                       comment = "#>")
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #   install.packages("phyloraster")
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  devtools::install_github("gabferreira/phyloraster")
 
-## ---- warning = FALSE, message = FALSE----------------------------------------
+## ----warning = FALSE, message = FALSE-----------------------------------------
 library(phyloraster)
 library(terra)
 library(ape)
@@ -23,7 +23,7 @@ head(data$presab)
 ## -----------------------------------------------------------------------------
 data$tree
 
-## ---- fig.height = 5, fig.width = 5, fig.align = 'center'---------------------
+## ----fig.height = 5, fig.width = 5, fig.align = 'center'----------------------
 plot(data$tree, cex = 0.65)
 
 ## -----------------------------------------------------------------------------
@@ -32,14 +32,14 @@ r <- df2rast(x = data$presab,
              CRS = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0")
 class(r)
 
-## ---- fig.height = 5, fig.width = 5, fig.align = 'center'---------------------
+## ----fig.height = 5, fig.width = 5, fig.align = 'center'----------------------
 plot(r)
 
 ## -----------------------------------------------------------------------------
 shp <- terra::vect(system.file("extdata", "shps_iucn_spps_rosauer.shp", 
                                package = "phyloraster"))
 
-## ---- fig.height = 5, fig.width = 5, fig.align = 'center'---------------------
+## ----fig.height = 5, fig.width = 5, fig.align = 'center'----------------------
 colors <- rainbow(length(unique(shp$BINOMIAL)),
                   alpha = 0.5)
 position <- match(shp$BINOMIAL,
@@ -50,13 +50,13 @@ plot(shp, col = colors, lty = 0,
 library(maps)
 maps::map(add = TRUE)
 
-## ---- message = F-------------------------------------------------------------
+## ----message = F--------------------------------------------------------------
 r2 <- shp2rast(shp, sps.col = "BINOMIAL", ymask = FALSE, background = 0, 
                resolution = 0.5)
 r2
 plot(r2[[9]])
 
-## ---- message = F-------------------------------------------------------------
+## ----message = F--------------------------------------------------------------
 library(terra)
 
 shp <- terra::vect(system.file("extdata", "shps_iucn_spps_rosauer.shp",
@@ -89,10 +89,10 @@ dataprep <- phylo.pres(x = ras, tree = tree)
 ## -----------------------------------------------------------------------------
 names(dataprep$x) == tree$tip.label
 
-## ---- fig.height = 5, fig.width = 7, fig.align = 'center', warning= FALSE, echo = FALSE----
+## ----fig.height = 5, fig.width = 4, fig.align = 'center', warning= FALSE, echo = FALSE----
 knitr::include_graphics("figs/tree.jpg")
 
-## ---- warning= FALSE----------------------------------------------------------
+## ----warning= FALSE-----------------------------------------------------------
 ras <- terra::rast(system.file("extdata", "rast.presab.tif", 
                                package = "phyloraster"))
 sr <- rast.sr(x = ras)
@@ -101,13 +101,13 @@ sr
 ## ----plot, fig.height = 5, fig.width = 7, fig.align = 'center', warning= FALSE----
 plot(sr, main = "Species richness")
 
-## ---- warning= FALSE----------------------------------------------------------
+## ----warning= FALSE-----------------------------------------------------------
 ras <- terra::rast(system.file("extdata", "rast.presab.tif", 
                                package = "phyloraster"))
 wer <- rast.we(x = ras)
 wer
 
-## ---- fig.height = 5, fig.width = 7, fig.align = 'center', warning= FALSE-----
+## ----fig.height = 5, fig.width = 7, fig.align = 'center', warning= FALSE------
 wer$WE
 plot(wer$WE, main ="Weigthed Endemism")
 
@@ -124,7 +124,7 @@ pdr <- rast.pd(x = dataprep$x, edge.path = dataprep$edge.path,
 ## ----pdr-plot, fig.height = 5, fig.width = 7, fig.align = 'center', warning= FALSE----
 plot(pdr$PD, main = "Phylogenetic diversity")
 
-## ---- warning= FALSE----------------------------------------------------------
+## ----warning= FALSE-----------------------------------------------------------
 ras <- terra::rast(system.file("extdata", "rast.presab.tif", 
                                package = "phyloraster"))
 tree <- ape::read.tree(system.file("extdata", "tree.nex", 
@@ -134,6 +134,23 @@ per
 
 ## ----per-plot, fig.height = 5, fig.width = 7, fig.align = 'center', warning= FALSE----
 plot(per$PE, main = "Phylogenetic Endemism")
+
+## ----warning= FALSE-----------------------------------------------------------
+x <- terra::rast(system.file("extdata", "rast.presab.tif", package="phyloraster"))
+# phylogenetic tree
+tree <- ape::read.tree(system.file("extdata", "tree.nex", package="phyloraster"))
+data <- phylo.pres(x, tree)
+ed <- rast.ed(data$x, tree)
+ed
+
+## ----edr-plot, fig.height = 5, fig.width = 7, fig.align = 'center', warning= TRUE----
+terra::plot(ed, main = "Evolutionary Distinctiveness")
+
+## ----warning= FALSE-----------------------------------------------------------
+tree <- ape::read.tree(system.file("extdata", "tree.nex", package="phyloraster"))
+
+ed <- phyloraster::species.ed(tree)
+head(ed)
 
 ## -----------------------------------------------------------------------------
 library(SESraster)
